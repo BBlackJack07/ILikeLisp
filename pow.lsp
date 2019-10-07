@@ -10,12 +10,9 @@
   (let ((n 0))
     (loop
       (incf n 1)
-      (when (>= (pow b n) a) (return))
+      (when (< a (pow b n)) (return))
       )
-    (if (= (pow b n) a) 
-      (return-from maxPow n)
-      (return-from maxPow (- n 1))
-      )
+    (return-from maxPow (- n 1))
     )
-  )
+  ) 
 
