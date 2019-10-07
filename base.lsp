@@ -16,17 +16,18 @@
 
 (defun write-base-2 (num)
   (let ((len (+ (maxPow num 2) 1)) (bits))
-    (setq bits (make-array len))
-    (loop for i from 0 to (- len 1) do (setf (aref bits i) 0))
+    (setq bits (make-array len :initial-element '0 ))
     (loop
+      (if (= num 0) (return))
       (setq x (maxPow num 2))
       (decf num (pow 2 x))
       (setf (aref bits (- len 1 x)) 1)
-      (if (= num 0) (return))
       )
     (return-from write-base-2 bits)
     )
   )
 
-(print (read-base-2 1001110))
-(print (write-base-2 78))
+(defun print-array (a)
+  (loop for i from 0 to (- (length a) 1) do (write (aref a i)))
+  )
+
